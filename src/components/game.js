@@ -11,7 +11,7 @@ class Game extends React.Component {
         this.state = {
             // targetNum: Math.floor(Math.random()*100)+1,
             targetNum: 35,
-            guesses: [],
+            guesses: [20],
             feedback: 'Make your guess!',
             isWhatDisplaying: false
         }
@@ -22,11 +22,25 @@ class Game extends React.Component {
             isWhatDisplaying: val
         })
     }
+
+    addGuessToState(num){
+        const newArr = [...this.guesses, num];
+        this.setState({
+            guesses: newArr
+        })
+    }
+
+    setFeedbackState(feedback){
+        this.setState({
+            feedback
+        })
+    }
     
     resetGame(){
         this.setState({
             guesses: [],
-            feedback: 'Make your guess!'
+            feedback: 'Make your guess!',
+            targetNum: Math.floor(Math.random()*100)+1
         })
     }
 
@@ -38,7 +52,11 @@ class Game extends React.Component {
                         setWhat={val=>this.setIsWhatDisplayingState(val)}
                         isWhat={this.state.isWhatDisplaying}
                 />
-                <GuessSection feedback={this.state.feedback} />
+                <GuessSection   feedback={this.state.feedback} 
+                                addGuess={num=>this.addGuessToState(num)}
+                                guesses={this.state.guesses}
+                                setFeedback={feedback=>this.setFeedbackState(feedback)}
+                />
                 <GuessCount count={count} />
                 <GuessList guesses={this.state.guesses} />
             </div>
