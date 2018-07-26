@@ -11,6 +11,7 @@ export default function GuessSection(props) {
             <GuessForm  addGuess={props.addGuess}
                         guesses={props.guesses}
                         setFeedback={props.setFeedback}
+                        targetNum={props.targetNum}
             />
         </section>
     );
