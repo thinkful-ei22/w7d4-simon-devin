@@ -3,8 +3,14 @@ import React from 'react';
 import './info-modal.css';
 
 export default function InfoModal(props) {
+    let hidden = false;
+    
+    if(!props.isWhat){
+        hidden = true;
+    }
+    
     return (
-        <div className="overlay" id="modal">
+        <div className="overlay" id="modal" hidden={hidden}>
             <div className="content">
                 <h3>What do I do?</h3>
                 <div>
@@ -15,7 +21,12 @@ export default function InfoModal(props) {
                         <li>3. You will <strong>get feedback</strong> on how close ("hot") or far ("cold") your guess is.</li>
                     </ul>
                     <p>So, Are you ready?</p>
-                    <a className="close" href="#">Got It!</a>
+                    <a className="close" href="#" onClick={e=>{
+                        e.preventDefault();
+                        props.setWhat(false);
+                    }}>
+                        Got It!
+                    </a>
                 </div>
             </div>
         </div>

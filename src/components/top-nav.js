@@ -7,12 +7,18 @@ export default function TopNav(props) {
         <nav>
             <ul className="clearfix">
                 <li>
-                    <a className="what" href="#">
+                    <a className="what" href="#" onClick={e=>{
+                        e.preventDefault();
+                        props.setWhat(true);
+                    }}>
                         What?
                     </a>
                 </li>
                 <li>
-                    <a className="new" href="#">
+                    <a className="new" href="#" onClick={e =>{
+                        e.preventDefault();
+                        props.reset();
+                    }}>
                         + New Game
                     </a>
                 </li>
